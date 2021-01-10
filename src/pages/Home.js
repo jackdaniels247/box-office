@@ -1,5 +1,7 @@
 import React,{useState} from 'react'
+import Actorgrid from '../components/Actors/Actorgrid';
 import Mainpagelayout from '../components/Mainpagelayout'
+import Showgrid from '../components/Shows/Showgrid';
 import {apiGet} from '../misc/config';
 
 const Home = () => {
@@ -44,10 +46,10 @@ const Home = () => {
            return(
                results[0].show ?
             
-                results.map(item=> <div key={item.show.id}>{item.show.name}</div>)
+                <Showgrid data={results}/>
             
             :
-                results.map(item=> <div key={item.person.id}>{item.person.name}</div>)
+                <Actorgrid data={results}/>
             
            );
                
