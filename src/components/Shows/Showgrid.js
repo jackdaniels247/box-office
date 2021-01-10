@@ -7,7 +7,7 @@ const Showgrid = ({data}) =>
     (
         <FlexGrid>
         {
-            data.map(({show}) => <Showcard key={show.id} name={show.name} image={show.image?show.image.medium :NOT_FOUND} summary={show.summary}/>)
+            data.map(({show}) => <Showcard key={show.id} id={show.id} name={show.name} image={show.image?show.image.medium :NOT_FOUND} summary={show.summary}/>)
         }
         </FlexGrid>
     )

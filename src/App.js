@@ -3,6 +3,7 @@ import { Switch,Route } from 'react-router';
 
 import Home from './pages/Home';
 import Star from './pages/Star';
+import Show from './pages/Show';
 
 
 
@@ -14,6 +15,9 @@ function App() {
      </Route>
      <Route exact path='/star'>
        <Star />
+     </Route>
+     <Route exact path='/show/:id'>
+      <Show />
      </Route>
      <Route>
        This is 404
