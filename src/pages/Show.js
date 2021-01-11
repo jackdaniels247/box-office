@@ -1,5 +1,11 @@
+/* eslint no-underscore-dangle: "off" */
+
 import React,{useEffect,useReducer} from 'react'
 import {useParams} from 'react-router-dom'
+import Cast from '../components/Shows/Cast';
+import Details from '../components/Shows/Details';
+import Season from '../components/Shows/Season';
+import ShowMainData from '../components/Shows/ShowMainData';
 import {apiGet} from '../misc/config';
 
 const initialState={
@@ -71,10 +77,38 @@ const Show = () => {
     return <div>Error occurs : {error}</div>
     }
 
-    console.log('show',show);
+   
     return (
         <div>
-            This is show
+            <ShowMainData 
+            image={show.image}
+            name={show.name}
+            rating={show.rating}
+            summary={show.summary}
+            tags={show.genres}
+            />
+            <div>
+                <h2>Details</h2>
+                <Details 
+                status={show.status}
+                premiered={show.premiered}
+                network={show.network}
+                />
+            </div>
+
+            <div>
+                <h2>Seasons</h2>
+                <Season 
+                seasons={show._embedded.seasons}
+                />
+            </div>
+
+            <div>
+                <h2>Cast</h2>
+                <Cast 
+                cast={show._embedded.cast}
+                />
+            </div>
         </div>
     )
 
