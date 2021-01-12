@@ -1,9 +1,11 @@
 import React,{useState} from 'react'
 import Actorgrid from '../components/Actors/Actorgrid';
+import CustomRadio from '../components/CustomRadio';
 import Mainpagelayout from '../components/Mainpagelayout'
 import Showgrid from '../components/Shows/Showgrid';
 import {apiGet} from '../misc/config';
 import { useLastQuery } from '../misc/CustomHooks';
+import { RadioInputsWrapper, SearchButtonWrapper, SearchInput } from './Home.styled';
 
 const Home = () => {
      
@@ -62,22 +64,35 @@ const Home = () => {
 
     return (
         <Mainpagelayout>
-            <input type='text' onChange={onInputChange} value={input} onKeyDown={onKeyDown} placeholder='Search for Something...' />
+            <SearchInput type='text' onChange={onInputChange} value={input} onKeyDown={onKeyDown} placeholder='Search for Something...' />
 
-            <div>
-                <label htmlFor="shows-search">
-                    Shows
-                    <input id="shows-search" type="radio" onChange={onRadioChange} value="shows" checked={isShowsSearch} />
-                </label>
+            <RadioInputsWrapper>
+                <div>
+                <CustomRadio 
+                label='Shows' 
+                id="shows-search"  
+                onChange={onRadioChange} 
+                value="shows" 
+                checked={isShowsSearch}
+                />
+                </div>
+                
+                <div>
+                <CustomRadio 
+                label='Actors' 
+                id="actor-search"  
+                onChange={onRadioChange} 
+                value="people" 
+                checked={!isShowsSearch}
+                />
+                </div>
+                
+            </RadioInputsWrapper>
 
-                <label htmlFor="actor-search">
-                    Actors
-                    <input id="actor-search" type="radio" onChange={onRadioChange} value="people" checked={!isShowsSearch} />
-                </label>
-            </div>
-
-
-            <input type='submit' value="Search" onClick={onSearch}  />
+            <SearchButtonWrapper>
+            <button type='submit'onClick={onSearch}>Search</button>
+            </SearchButtonWrapper>
+            
 
             {renderResults()}
         </Mainpagelayout>
