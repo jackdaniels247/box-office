@@ -3,10 +3,11 @@ import Actorgrid from '../components/Actors/Actorgrid';
 import Mainpagelayout from '../components/Mainpagelayout'
 import Showgrid from '../components/Shows/Showgrid';
 import {apiGet} from '../misc/config';
+import { useLastQuery } from '../misc/CustomHooks';
 
 const Home = () => {
      
-    const [input, setInput]=useState(''); 
+    const [input, setInput]=useLastQuery(); 
     const[results,setResults]=useState(null);
     const[searchOption,setsearchOption]=useState('shows');
 
@@ -61,7 +62,7 @@ const Home = () => {
 
     return (
         <Mainpagelayout>
-            <input type='text' onChange={onInputChange} value={input} onKeyDown={onKeyDown} />
+            <input type='text' onChange={onInputChange} value={input} onKeyDown={onKeyDown} placeholder='Search for Something...' />
 
             <div>
                 <label htmlFor="shows-search">
