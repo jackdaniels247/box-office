@@ -6,7 +6,7 @@ import { LinkStyled, NavList } from './Nav.styled';
 const Navs = () => {
 
     const location=useLocation();
- const Links=[{to:'/home',text:'Home'},{to:'/star',text:'Starred'}];
+ const Links=[{to:'/',text:'Home'},{to:'/star',text:'Starred'}];
 
 
     return (
