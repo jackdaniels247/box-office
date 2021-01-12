@@ -16,7 +16,7 @@ const Cast = ({ cast }) =>
             <div className='actor'>
               <span>
                   <span className='bold'>{person.name} </span>
-                | {character.name} {voice ? '| Voice' : ''}
+                | {character.name} {voice ? '| Voice' : ''} 
               </span>
             </div>
           </div>
