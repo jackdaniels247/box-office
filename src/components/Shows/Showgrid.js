@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{memo} from 'react'
 import Showcard from './Showcard'
 import NOT_FOUND from '../../images/not-found.png';
 import { FlexGrid } from '../Styled';
@@ -24,7 +24,7 @@ const Showgrid = ({data}) => {
                     else{
                         dispatchStarred({type:'ADD',showId:show.id});
                     }
-                }
+                };
 
                 return(
                     <Showcard 
@@ -49,4 +49,4 @@ const Showgrid = ({data}) => {
     
 
 
-export default Showgrid
+export default memo(Showgrid);

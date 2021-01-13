@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useCallback} from 'react'
 import Actorgrid from '../components/Actors/Actorgrid';
 import CustomRadio from '../components/CustomRadio';
 import Mainpagelayout from '../components/Mainpagelayout'
@@ -6,6 +6,29 @@ import Showgrid from '../components/Shows/Showgrid';
 import {apiGet} from '../misc/config';
 import { useLastQuery } from '../misc/CustomHooks';
 import { RadioInputsWrapper, SearchButtonWrapper, SearchInput } from './Home.styled';
+
+
+const renderResults=(results)=>{
+    if(results && results.length===0){
+       return <div>No results</div>
+    }
+    if(results && results.length>0){
+       return(
+           results[0].show ?
+        
+            <Showgrid data={results}/>
+        
+        :
+            <Actorgrid data={results}/>
+        
+       );
+           
+       
+    }
+    return null;
+}
+
+
 
 const Home = () => {
      
@@ -26,14 +49,18 @@ const Home = () => {
     }
     console.log(searchOption);
 
-    const onInputChange=(ev)=>{
-        setInput(ev.target.value);
-        
-    }
+    const onInputChange=useCallback(
+        (ev)=>{
+            setInput(ev.target.value);
+            
+        },[setInput]
+    )
     
-    const onRadioChange=(ev)=>{
-      setsearchOption(ev.target.value);
-    }
+    const onRadioChange= useCallback(
+        (ev)=>{
+            setsearchOption(ev.target.value);
+          },[]
+    ) 
 
     const onKeyDown=(ev)=>{
         if(ev.keyCode===13){
@@ -41,25 +68,7 @@ const Home = () => {
         }
     }
 
-    const renderResults=()=>{
-        if(results && results.length===0){
-           return <div>No results</div>
-        }
-        if(results && results.length>0){
-           return(
-               results[0].show ?
-            
-                <Showgrid data={results}/>
-            
-            :
-                <Actorgrid data={results}/>
-            
-           );
-               
-           
-        }
-        return null;
-    }
+    
 
 
     return (
@@ -94,7 +103,7 @@ const Home = () => {
             </SearchButtonWrapper>
             
 
-            {renderResults()}
+            {renderResults(results)}
         </Mainpagelayout>
     )
 }
